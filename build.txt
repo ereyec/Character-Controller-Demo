@@ -1,0 +1,1 @@
+g++ -I./include -L./lib ./include/glad.c ./character-controller-demo/main.cpp -l:libglfw3.a -lopengl32 -lgdi32 -luser32 -o program.exe
