@@ -29,27 +29,27 @@ for(int i = 0; i < common.collisionCandidates.size(); i++){
 	triangleQuart tq = common.collisionCandidates[i];
 	if(getDistance3D(common.player.position, tq.v1) < common.player.radius){
 		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v1));
-		common.collisions.push_back({tq.v1, common.player.position, penetrationDepth});
+		common.collisions.push_back({tq.v1, common.player.position, penetrationDepth, tq.normal});
 	}
 	if(getDistance3D(common.player.position, tq.v2) < common.player.radius){
 		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v2));
-		common.collisions.push_back({tq.v2, common.player.position, penetrationDepth});
+		common.collisions.push_back({tq.v2, common.player.position, penetrationDepth, tq.normal});
 	}
 	if(getDistance3D(common.player.position, tq.v3) < common.player.radius){
 		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v3));
-		common.collisions.push_back({tq.v3, common.player.position, penetrationDepth});
+		common.collisions.push_back({tq.v3, common.player.position, penetrationDepth, tq.normal});
 	}
 	if(getDistance3D(common.player.position, tq.v12) < common.player.radius){
 		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v12));
-		common.collisions.push_back({tq.v12, common.player.position, penetrationDepth});
+		common.collisions.push_back({tq.v12, common.player.position, penetrationDepth, tq.normal});
 	}
 	if(getDistance3D(common.player.position, tq.v13) < common.player.radius){
 		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v13));
-		common.collisions.push_back({tq.v13, common.player.position, penetrationDepth});
+		common.collisions.push_back({tq.v13, common.player.position, penetrationDepth, tq.normal});
 	}
 	if(getDistance3D(common.player.position, tq.v23) < common.player.radius){
 		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v23));
-		common.collisions.push_back({tq.v23, common.player.position, penetrationDepth});
+		common.collisions.push_back({tq.v23, common.player.position, penetrationDepth, tq.normal});
 	}
 }
 }

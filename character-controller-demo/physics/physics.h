@@ -8,18 +8,20 @@
 
 void physicsUpdate(Context& context, Common& common, float deltaTime){
 
+static float velocity = 0.0f;
+
 broadPhase(common);
 if(!common.collisionCandidates.empty()){
 	narrowPhase(common);
 	if(!common.collisions.empty()){
 		sortCollisionsByDepth(common);
-		resolveCollision(common.collisions[0], common, context);
-		//narrowPhase(common);
+		resolveCollision(common.collisions[0], common, context, velocity);
 	}
 }
 
 common.player.position = context.camera.cameraPos;
-context.camera.cameraPos += glm::vec3(0.0f, -2.0f, 0.0f) * deltaTime; //needs improving!!!
+velocity += -10.f * deltaTime;
+context.camera.cameraPos += glm::vec3(0.0f, velocity, 0.0f) * deltaTime;
 
 common.collisionCandidates.clear();
 

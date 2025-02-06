@@ -18,6 +18,7 @@ struct Collision{
 	glm::vec3 trianglePoint;
 	glm::vec3 colliderPoint;
 	float penetrationDepth;
+	glm::vec3 contactNormal; //(e.g. if the contact is the ground, normal is (0,1,0))
 };
 
 struct triangle{
@@ -35,6 +36,7 @@ struct triangleQuart{
 	glm::vec3 v12;
 	glm::vec3 v13;
 	glm::vec3 v23;
+	glm::vec3 normal;
 };
 
 struct Vec3Hash{
