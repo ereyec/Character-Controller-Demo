@@ -10,6 +10,8 @@
 #include "./world/w3d_vector.h"
 #include "./triangulation/triangulate_world_data.h"
 #include "./mesh/mesh_world.h"
+#include "./physics/tessellation_stage.h"
+#include "./physics/physics.h"
 
 class Application{
 public:	
@@ -65,6 +67,10 @@ map3DWorld(common);
 triangulateWorld(common);
 meshWorld(common, context);
 
+tessellationStage(common);
+context.camera.cameraPos = glm::vec3(6.f, 6.f, 6.f);
+common.player.position = context.camera.cameraPos;
+common.player.radius = 1.f;
 
 while (!glfwWindowShouldClose(context.window)){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -75,6 +81,8 @@ while (!glfwWindowShouldClose(context.window)){
         this->lastFrame = currentFrame;
 
 	context.camera.update(this->deltaTime);
+
+	physicsUpdate(context, common, this->deltaTime);
 
 	glm::mat4 view = glm::lookAt(context.camera.cameraPos, context.camera.cameraPos + context.camera.cameraFront, context.camera.cameraUp);
         glm::mat4 projection = glm::perspective(45.0f, 1200.0f / 900.0f, 0.1f, 400.0f);

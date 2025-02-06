@@ -47,31 +47,31 @@ for(int z = 1; z < 27; z++){
 			glm::vec3 offset;
 			if(block == 0){
 				if(nBlock == 1){
-				common.triangles.push_back({zNormalQuad::v1 + pos, zNormalQuad::v2 + pos, zNormalQuad::v3 + pos, glm::vec3(0,0,-1)});
-				common.triangles.push_back({zNormalQuad::v2 + pos, zNormalQuad::v3 + pos, zNormalQuad::v4 + pos, glm::vec3(0,0,-1)});
+				common.triangles.push_back({zNormalQuad::v1 + pos, zNormalQuad::v2 + pos, zNormalQuad::v3 + pos, glm::vec3(0,0,-1), zNormalQuad::v3 + pos});
+				common.triangles.push_back({zNormalQuad::v2 + pos, zNormalQuad::v3 + pos, zNormalQuad::v4 + pos, glm::vec3(0,0,-1), zNormalQuad::v3 + pos});
 				}
 				if(sBlock == 1){
 				offset = glm::vec3(0, 0, 0.5f);		
-				common.triangles.push_back({zNormalQuad::v1 + pos + offset, zNormalQuad::v2 + pos + offset, zNormalQuad::v3 + pos + offset, glm::vec3(0,0,1)});
-				common.triangles.push_back({zNormalQuad::v2 + pos + offset, zNormalQuad::v3 + pos + offset, zNormalQuad::v4 + pos + offset, glm::vec3(0,0,1)});
+				common.triangles.push_back({zNormalQuad::v1 + pos + offset, zNormalQuad::v2 + pos + offset, zNormalQuad::v3 + pos + offset, glm::vec3(0,0,1), zNormalQuad::v3 + pos + offset});
+				common.triangles.push_back({zNormalQuad::v2 + pos + offset, zNormalQuad::v3 + pos + offset, zNormalQuad::v4 + pos + offset, glm::vec3(0,0,1), zNormalQuad::v3 + pos + offset});
 				}
 				if(eBlock == 1){
-				common.triangles.push_back({xNormalQuad::v1 + pos, xNormalQuad::v2 + pos, xNormalQuad::v3 + pos, glm::vec3(-1,0,0)});
-				common.triangles.push_back({xNormalQuad::v2 + pos, xNormalQuad::v3 + pos, xNormalQuad::v4 + pos, glm::vec3(-1,0,0)});
+				common.triangles.push_back({xNormalQuad::v1 + pos, xNormalQuad::v2 + pos, xNormalQuad::v3 + pos, glm::vec3(-1,0,0), xNormalQuad::v3 + pos});
+				common.triangles.push_back({xNormalQuad::v2 + pos, xNormalQuad::v3 + pos, xNormalQuad::v4 + pos, glm::vec3(-1,0,0), xNormalQuad::v3 + pos});
 				}
 				if(wBlock == 1){
 				offset = glm::vec3(0.5f, 0, 0);
-				common.triangles.push_back({xNormalQuad::v1 + pos + offset, xNormalQuad::v2 + pos + offset, xNormalQuad::v3 + pos + offset, glm::vec3(1,0,0)});
-				common.triangles.push_back({xNormalQuad::v2 + pos + offset, xNormalQuad::v3 + pos + offset, xNormalQuad::v4 + pos + offset, glm::vec3(1,0,0)});
+				common.triangles.push_back({xNormalQuad::v1 + pos + offset, xNormalQuad::v2 + pos + offset, xNormalQuad::v3 + pos + offset, glm::vec3(1,0,0), xNormalQuad::v3 + pos + offset});
+				common.triangles.push_back({xNormalQuad::v2 + pos + offset, xNormalQuad::v3 + pos + offset, xNormalQuad::v4 + pos + offset, glm::vec3(1,0,0), xNormalQuad::v3 + pos + offset});
 				}
 				if(bBlock == 1){
-				common.triangles.push_back({yNormalQuad::v1 + pos, yNormalQuad::v2 + pos, yNormalQuad::v3 + pos, glm::vec3(0,-1,0)});
-				common.triangles.push_back({yNormalQuad::v2 + pos, yNormalQuad::v3 + pos, yNormalQuad::v4 + pos, glm::vec3(0,-1,0)});
+				common.triangles.push_back({yNormalQuad::v1 + pos, yNormalQuad::v2 + pos, yNormalQuad::v3 + pos, glm::vec3(0,-1,0), yNormalQuad::v3 + pos});
+				common.triangles.push_back({yNormalQuad::v2 + pos, yNormalQuad::v3 + pos, yNormalQuad::v4 + pos, glm::vec3(0,-1,0), yNormalQuad::v3 + pos});
 				}
 				if(tBlock == 1){
 				offset = glm::vec3(0, 0.5f, 0);
-				common.triangles.push_back({yNormalQuad::v1 + pos + offset, yNormalQuad::v2 + pos + offset, yNormalQuad::v3 + pos + offset, glm::vec3(0,1,0)});
-				common.triangles.push_back({yNormalQuad::v2 + pos + offset, yNormalQuad::v3 + pos + offset, yNormalQuad::v4 + pos + offset, glm::vec3(0,1,0)});
+				common.triangles.push_back({yNormalQuad::v1 + pos + offset, yNormalQuad::v2 + pos + offset, yNormalQuad::v3 + pos + offset, glm::vec3(0,1,0), yNormalQuad::v3 + pos + offset});
+				common.triangles.push_back({yNormalQuad::v2 + pos + offset, yNormalQuad::v3 + pos + offset, yNormalQuad::v4 + pos + offset, glm::vec3(0,1,0), yNormalQuad::v3 + pos + offset});
 				}
 			}
 			

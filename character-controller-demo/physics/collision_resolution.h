@@ -1,10 +1,15 @@
 #ifndef COLLISIONRESOLUTION_H
 #define COLLISIONRESOLUTION_H
 
-//resolve deepest collision
+#include "../common.h"
+#include "../context.h"
 
-collision col = collisions[0];
-
-//perform narrow phase again and resolve deepest collision again. 
+//(penetration depth, contact point, position)
+void resolveCollision(Collision& collision, Common& common, Context& context){
+	glm::vec3 moveDirection = glm::normalize(common.player.position - collision.trianglePoint);
+	moveDirection *= collision.penetrationDepth;
+	//common.player.position += moveDirection;
+	context.camera.cameraPos += moveDirection;
+}
 
 #endif

@@ -1,47 +1,64 @@
 #ifndef COLLISIONDETECTION_H
 #define COLLISIONDETECTION_H
 
-struct playerCollider{ //a sphere for now
-	vec3 position;
-	float radius;
-};
+#include "../common.h"
 
-struct collision{
-	glm::vec3 trianglePoint;
-	glm::vec3 colliderPoint;
-	float penetrationDepth;
-};
-
-std::vector<triangleQuart> collisionCandidates;
-std::vector<collision> collisions;
-
-//broad phase
-//glm::vec3 playerPos; radius = 1.f;
-
+void broadPhase(Common& common){
 for(float z = -1.5f; z < 2; z += 0.5f){
 	for(float x = -1.5f; x < 2; x += 0.5f){
 		for(float y = -1.5f; y < 2; y += 0.5f){
-			glm::vec3 pos; //should be multiple of 0.5 and then added to x,y,z.
-			if(sceneMap.find(pos) != sceneMap.end()){
-				triangleQuart = sceneMap.find(pos)->second; //check to push all objects!
-				collisionCandidates.push_back(triangleQuart); 
+			glm::vec3 pos0 = common.player.position;
+			pos0 *= 2.f;
+			pos0 = glm::floor(pos0);
+			pos0 /= 2.f;
+			pos0 += glm::vec3(x, y, z);
+
+			auto range = common.sceneMap.equal_range(pos0); //!!!
+			for(auto it = range.first; it != range.second; ++it){
+				common.collisionCandidates.push_back(it->second);
 			}
 		}
 	}
 }
+}
 
 //narrow phase
-for(int i = 0; i < collisionCandidates.size(); i++){
-	triangleQuart tq = collisionCandidates[i];
-	if(getDistance(.pos, tq.v1) < r){
-		float penetrationDepth = r - (std::abs(.pos - tq.v1));
-		collisions.push_back({tq.v1, .pos, penetrationDepth});
+void narrowPhase(Common& common){
+common.collisions.clear();
+for(int i = 0; i < common.collisionCandidates.size(); i++){
+	triangleQuart tq = common.collisionCandidates[i];
+	if(getDistance3D(common.player.position, tq.v1) < common.player.radius){
+		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v1));
+		common.collisions.push_back({tq.v1, common.player.position, penetrationDepth});
 	}
+	if(getDistance3D(common.player.position, tq.v2) < common.player.radius){
+		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v2));
+		common.collisions.push_back({tq.v2, common.player.position, penetrationDepth});
+	}
+	if(getDistance3D(common.player.position, tq.v3) < common.player.radius){
+		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v3));
+		common.collisions.push_back({tq.v3, common.player.position, penetrationDepth});
+	}
+	if(getDistance3D(common.player.position, tq.v12) < common.player.radius){
+		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v12));
+		common.collisions.push_back({tq.v12, common.player.position, penetrationDepth});
+	}
+	if(getDistance3D(common.player.position, tq.v13) < common.player.radius){
+		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v13));
+		common.collisions.push_back({tq.v13, common.player.position, penetrationDepth});
+	}
+	if(getDistance3D(common.player.position, tq.v23) < common.player.radius){
+		float penetrationDepth = common.player.radius - (getDistance3D(common.player.position, tq.v23));
+		common.collisions.push_back({tq.v23, common.player.position, penetrationDepth});
+	}
+}
 }
 
 //sort collisions by penetration depth
-std::sort(collisions.begin(), collision.end(), [](const collision& a, const collision& b)
-{ return a.penetrationDepth > b.penetrationDepth; }
-);
+void sortCollisionsByDepth(Common& common){
+	std::sort(common.collisions.begin(), common.collisions.end(), [](const Collision& a, const Collision& b)
+	{ return a.penetrationDepth > b.penetrationDepth; }
+	);
+}
 
 #endif
