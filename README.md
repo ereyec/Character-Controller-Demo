@@ -8,6 +8,8 @@ Broad-phase collision detection is done with the use of an Axis-Aligned Bounding
 
 Narrow-phase collision detection is done with tessellated triangles whose sides are about 1/2 the radius of the collider sphere to avoid complicated math (such as vector projection, plane intersection tests), so that we only have to check the radius between each triangle vertex and the sphere collider center.
 
+Primary issues to address: Camera-Collider decoupling, adding velocity & acceleration, AABB tree insertion and deletion for dynamic scenes
+
 # Build Instructions
 (Windows)
 
