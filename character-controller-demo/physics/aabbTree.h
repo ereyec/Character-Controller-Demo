@@ -15,20 +15,20 @@ for(int i = 0; i < common.triangles.size(); i++){
 	std::sort(points.begin(), points.end(), [](const glm::vec3& a, const glm::vec3& b) //!!!
 	{ return a.x < b.x; }	
 	);
-	p.x = points[0].x - 1.0f; //!!!
-	q.x = points[2].x + 1.0f;
+	p.x = points[0].x - 2.0f; //!!!
+	q.x = points[2].x + 2.0f;
 
 	std::sort(points.begin(), points.end(), [](const glm::vec3& a, const glm::vec3& b) //!!!
 	{ return a.y < b.y; }	
 	);
-	p.y = points[0].y - 1.0f;
-	q.y = points[2].y + 1.0f;
+	p.y = points[0].y - 2.0f;
+	q.y = points[2].y + 2.0f;
 
 	std::sort(points.begin(), points.end(), [](const glm::vec3& a, const glm::vec3& b) //!!!
 	{ return a.z < b.z; }	
 	);
-	p.z = points[0].z - 1.0f;
-	q.z = points[2].z + 1.0f;
+	p.z = points[0].z - 2.0f;
+	q.z = points[2].z + 2.0f;
 
 	BoundingBox box = {p, q};
 
