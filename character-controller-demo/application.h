@@ -67,7 +67,8 @@ map3DWorld(common);
 triangulateWorld(common);
 meshWorld(common, context);
 
-tessellationStage(common);
+physicsInit(common);
+
 context.camera.cameraPos = glm::vec3(6.f, 6.f, 6.f);
 common.player.position = context.camera.cameraPos;
 common.player.radius = 1.f;

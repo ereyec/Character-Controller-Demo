@@ -1,6 +1,8 @@
 #ifndef TESSELLATIONSTAGE_H
 #define TESSELLATIONSTAGE_H
 
+/****OBSOLETE****/
+
 #include "../common.h"
 
 void tessellationStage(Common& common){

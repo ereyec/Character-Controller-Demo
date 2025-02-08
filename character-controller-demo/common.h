@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <memory>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -50,6 +51,18 @@ struct Vec3Hash{
 	return result;
 }};
 
+struct BoundingBox{
+	glm::vec3 p; //p is guaranteed to always be less than or equal to q. 
+	glm::vec3 q;
+};
+
+struct AABBNode{
+	BoundingBox boundingVolume;
+	std::unique_ptr<AABBNode> left = nullptr;
+	std::unique_ptr<AABBNode> right = nullptr;
+	triangleQuart triangles; //if applicable - triangleQuart is just a small collection of triangles, can be thought of as just an object in the scene.
+};
+
 struct Vec3Equal{
 	bool operator()(const glm::vec3& v1, const glm::vec3& v2) const {
 		return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z;
@@ -78,6 +91,10 @@ public:
 
 	std::vector<triangleQuart> collisionCandidates;
 	std::vector<Collision> collisions;
+
+	std::vector<std::pair<BoundingBox, triangleQuart>> objects;
+
+	std::unique_ptr<AABBNode> aabbTree;
 
 };
 

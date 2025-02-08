@@ -4,6 +4,10 @@
 #include "../common.h"
 
 void broadPhase(Common& common){
+	queryAABBTree(common.aabbTree, common.player.position, common.collisionCandidates);
+}
+
+void broadPhasemin1(Common& common){
 for(float z = -1.5f; z < 2; z += 0.5f){
 	for(float x = -1.5f; x < 2; x += 0.5f){
 		for(float y = -1.5f; y < 2; y += 0.5f){

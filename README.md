@@ -4,7 +4,7 @@ My first attempt at making a 3D character controller in OpenGL from scratch for 
 
 For simplicity, the player collider is a sphere. This allows it to climb obstacles smaller than the radius of the sphere. 
 
-Broad phase collision detection is done with the use of a std::multimap, with the neighboring points around the player acting as the key to hash triangles. 
+Broad phase collision detection is done with the use of a std::multimap, with the neighboring points around the player acting as keys to hash potentially colliding triangles. 
 
 The tessellation stage creates triangles whose sides are about 1/2 the radius of the collider sphere to avoid complicated math (such as vector projection, plane intersection tests), so that we only have to check the radius between each triangle vertex and the sphere collider center. 
 

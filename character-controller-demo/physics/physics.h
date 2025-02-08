@@ -3,8 +3,16 @@
 
 #include "../common.h"
 #include "../context.h"
+#include "aabbTree.h"
 #include "collision_detection.h"
 #include "collision_resolution.h"
+
+void physicsInit(Common& common){
+	common.aabbTree = std::make_unique<AABBNode>();
+	createObjects(common);
+	constructAABBTree(common, 0, common.objects.size() -1, common.aabbTree);
+}
+
 
 void physicsUpdate(Context& context, Common& common, float deltaTime){
 
